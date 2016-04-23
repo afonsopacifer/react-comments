@@ -20,12 +20,4 @@ $ npm install
 $ npm start
 ```
 
-**PS:** Do not forget to run a simple server ;)
-
-```sh
-$ python -m SimpleHTTPServer 58000
-```
-
-Cool stuff
-- [react for atom](https://atom.io/packages/react)
-- [react developer tools](http://facebook.github.io/react/blog/2015/09/02/new-react-developer-tools.html)
+**Go to:** [localhost:5000](http://localhost:5000/)
