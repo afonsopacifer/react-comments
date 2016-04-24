@@ -38,9 +38,9 @@ var Comment = React.createClass({
 var CommentList = React.createClass({
 	render() {
 
-    var commentNodes = this.props.xyz.map(function(comment) {
+    var commentNodes = this.props.comments.map(function(comment) {
       return (
-        <Comment>
+        <Comment key={comment.id}>
 					{comment.text}
 				</Comment>
       );
@@ -61,7 +61,7 @@ var CommentBox = React.createClass({
 		return (
 			<div>
 				<Form />
-				<CommentList xyz={this.props.data}/>
+				<CommentList comments={this.props.data}/>
 			</div>
 		)
 	}
@@ -70,16 +70,16 @@ var CommentBox = React.createClass({
 // ----------------------------------
 // Data Default
 // ----------------------------------
-var comments = [
-  {text: "Hello"},
-  {text: "huhuuhu"},
-  {text: "Guys"}
+var data = [
+  {id:1, text: "Hello"},
+  {id:2, text: "huhuuhu"},
+  {id:3, text: "Guys"}
 ];
 
 // ----------------------------------
 // Final rander :)
 // ----------------------------------
 ReactDOM.render(
-	<CommentBox data={comments}/>,
+	<CommentBox data={data}/>,
 	document.getElementById('app')
 );
