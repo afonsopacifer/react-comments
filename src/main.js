@@ -1,5 +1,6 @@
 var React    = require('react'),
-		ReactDOM = require('react-dom');
+		ReactDOM = require('react-dom'),
+		$        = require('jquery');
 
 // <Input /> - Atom
 var Input = React.createClass({
@@ -57,29 +58,41 @@ var CommentList = React.createClass({
 
 // <CommentBox /> - Organism
 var CommentBox = React.createClass({
+
+ loadJSON() {
+    $.ajax({
+      url: 'data.json',
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this)
+    });
+  },
+
+  getInitialState() {
+    return {data: []};
+  },
+
+	componentDidMount() {
+    this.loadJSON();
+    setInterval(this.loadJSON, 2000);
+  },
+
 	render() {
 		return (
 			<div>
 				<Form />
-				<CommentList comments={this.props.data}/>
+				<CommentList comments={this.state.data}/>
 			</div>
 		)
 	}
 });
 
 // ----------------------------------
-// Data Default
-// ----------------------------------
-var data = [
-  {id:1, text: "Hello"},
-  {id:2, text: "huhuuhu"},
-  {id:3, text: "Guys"}
-];
-
-// ----------------------------------
 // Final rander :)
 // ----------------------------------
 ReactDOM.render(
-	<CommentBox data={data}/>,
+	<CommentBox/>,
 	document.getElementById('app')
 );
