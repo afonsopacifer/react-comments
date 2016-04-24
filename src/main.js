@@ -4,7 +4,7 @@ var React    = require('react'),
 // <Input /> - Atom
 var Input = React.createClass({
 	render() {
-		return <input placeHolder="Your comment..."/>
+		return <input placeholder="Your comment..."/>
 	}
 });
 
@@ -30,20 +30,28 @@ var Form = React.createClass({
 // <Comment /> - Atom
 var Comment = React.createClass({
 	render() {
-		return <div>Comment</div>
+		return <div>{this.props.children}</div>
 	}
 });
 
 // <CommentList /> - Molecule
 var CommentList = React.createClass({
 	render() {
+
+    var commentNodes = this.props.xyz.map(function(comment) {
+      return (
+        <Comment>
+					{comment.text}
+				</Comment>
+      );
+    });
+
 		return (
 			<div>
-				<Comment />
-				<Comment />
-				<Comment />
+				{commentNodes}
 			</div>
 		)
+
 	}
 });
 
@@ -53,15 +61,25 @@ var CommentBox = React.createClass({
 		return (
 			<div>
 				<Form />
-				<CommentList />
+				<CommentList xyz={this.props.data}/>
 			</div>
 		)
 	}
 });
 
 // ----------------------------------
+// Data Default
+// ----------------------------------
+var comments = [
+  {text: "Hello"},
+  {text: "huhuuhu"},
+  {text: "Guys"}
+];
+
+// ----------------------------------
 // Final rander :)
 // ----------------------------------
 ReactDOM.render(
-	<CommentBox />, document.getElementById('app')
+	<CommentBox data={comments}/>,
+	document.getElementById('app')
 );
