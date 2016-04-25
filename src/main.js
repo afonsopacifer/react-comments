@@ -52,7 +52,7 @@ var CommentBox = React.createClass({
   insertComment() {
     var oldState = this.state.data;
     var id = oldState.length + 2;
-    var avatarUrl = "guest.jpg";
+    var avatarUrl = "src/img/guest.jpg";
     var name = this.refs.name.value;
 		var text = this.refs.text.value;
 
@@ -68,7 +68,7 @@ var CommentBox = React.createClass({
 
  loadJSON() {
     $.ajax({
-      url: 'defaultComments.json',
+      url: 'src/defaultComments.json',
       dataType: 'json',
       cache: false,
       success: function(data) {
@@ -87,10 +87,10 @@ var CommentBox = React.createClass({
       <div className="comment-box">
         <CommentList comments={this.state.data}/>
         <div className="comment-form">
-					<img src="guest.jpg" className="avatar"/>
+					<img src="src/img/guest.jpg" className="avatar"/>
           <input ref="name" placeholder="Your name" className="input-text"/>
           <textarea ref="text" placeholder="Your comment" className="textarea"></textarea>
-          <button onClick={this.insertComment} className="btn">Comment</button>
+          <button onClick={this.insertComment} className="btn">Guest Comment</button>
         </div>
       </div>
     )

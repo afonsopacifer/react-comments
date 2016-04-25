@@ -14,7 +14,7 @@ $ git clone https://github.com/afonsopacifer/react-comments.git
 $ cd react-comments
 $ npm install
 ```
-**3 -** Run browserify with reactify and watchify:
+**3 -** Run static server and browserify/reactify/watchify:
 
 ```sh
 $ npm start

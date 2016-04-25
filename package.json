@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "start": "./node_modules/.bin/http-server ./src -p 5000 | watchify -t reactify src/main.js -o src/bundle.js"
+    "start": "./node_modules/.bin/http-server -p 5000 | watchify -t reactify src/main.js -o src/bundle.js"
   },
   "repository": {
     "type": "git",

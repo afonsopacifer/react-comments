@@ -6,6 +6,32 @@ body {
   font-family: 'Open Sans', sans-serif;
   background-color: #656998;
 }
+
+.header {
+  text-align: center;
+  margin: 30px 5px;
+}
+
+.title {
+  color: #fff;
+}
+
+.sub-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  transition: color .3s;
+}
+
+.link:hover {
+  color: #ccc;
+}
+
 .comment-box {
   width: 100%;
   max-width: 600px;
