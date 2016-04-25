@@ -1,67 +1,53 @@
 var React    = require('react'),
-		ReactDOM = require('react-dom'),
-		$        = require('jquery');
+    ReactDOM = require('react-dom'),
+    $        = require('jquery');
 
-// <Input /> - Atom
-var Input = React.createClass({
-	render() {
-		return <input placeholder="Your comment..."/>
-	}
-});
-
-// <Btn /> - Atom
-var Btn = React.createClass({
-	render() {
-		return <button>Add</button>
-	}
-});
-
-// <Form /> - Molecule
-var Form = React.createClass({
-	render() {
-		return (
-			<div>
-				<Input />
-				<Btn />
-			</div>
-		)
-	}
-});
-
-// <Comment /> - Atom
+// <Comment />
+// ----------------------------------
 var Comment = React.createClass({
-	render() {
-		return <div>{this.props.children}</div>
-	}
+  render() {
+    return <div>{this.props.children}</div>
+  }
 });
 
-// <CommentList /> - Molecule
+// <CommentList />
+// ----------------------------------
 var CommentList = React.createClass({
-	render() {
-
+  render() {
     var commentNodes = this.props.comments.map(function(comment) {
       return (
         <Comment key={comment.id}>
-					{comment.text}
-				</Comment>
+          {comment.text}
+        </Comment>
       );
     });
-
-		return (
-			<div>
-				{commentNodes}
-			</div>
-		)
-
-	}
+    return (
+      <div>
+        {commentNodes}
+      </div>
+    )
+  }
 });
 
-// <CommentBox /> - Organism
+// <CommentBox />
+// ----------------------------------
 var CommentBox = React.createClass({
+
+  getInitialState() {
+    return {data: []};
+  },
+
+  save() {
+    var oldState = this.state.data;
+    var id = oldState.length + 2;
+    var text = this.refs.text.value;
+    var newState = oldState.push({"id":id, "text": text});
+    this.setState({data: this.state.data});
+  },
 
  loadJSON() {
     $.ajax({
-      url: 'data.json',
+      url: 'defaultComments.json',
       dataType: 'json',
       cache: false,
       success: function(data) {
@@ -70,29 +56,28 @@ var CommentBox = React.createClass({
     });
   },
 
-  getInitialState() {
-    return {data: []};
-  },
-
-	componentDidMount() {
+  componentDidMount() {
     this.loadJSON();
-    setInterval(this.loadJSON, 2000);
+    //setInterval(this.loadJSON, 2000);
   },
 
-	render() {
-		return (
-			<div>
-				<Form />
-				<CommentList comments={this.state.data}/>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div>
+        <div>
+          <input ref="text" placeholder="Your comment..."/>
+          <button onClick={this.save}>Add</button>
+        </div>
+        <CommentList comments={this.state.data}/>
+      </div>
+    )
+  }
+
 });
 
-// ----------------------------------
 // Final rander :)
 // ----------------------------------
 ReactDOM.render(
-	<CommentBox/>,
-	document.getElementById('app')
+  <CommentBox/>,
+  document.getElementById('app')
 );
