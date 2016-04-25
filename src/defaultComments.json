@@ -2,19 +2,7 @@
   {
     "id":1,
     "avatarUrl": "https://avatars3.githubusercontent.com/u/6748866?v=3&s=460",
-    "name": "Afonso",
-    "text": "Hello 1"
-  },
-  {
-    "id":2,
-    "avatarUrl": "https://avatars3.githubusercontent.com/u/6748866?v=3&s=460",
-    "name": "Guest",
-    "text": "Hello 2"
-  },
-  {
-    "id":3,
-    "avatarUrl": "https://avatars3.githubusercontent.com/u/6748866?v=3&s=460",
-    "name": "Guest",
-    "text": "Hello 3"
+    "name": "Afonso Pacifer",
+    "text": "Hey! React is cool!"
   }
 ]

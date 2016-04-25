@@ -7,11 +7,17 @@ var React    = require('react'),
 var Comment = React.createClass({
   render() {
     return (
-			<div>
-			<img src={this.props.avatarUrl} width="50px"/>
-			{this.props.name}
-			{this.props.children}
-		</div>
+			<div className="comment">
+				<div>
+					<img src={this.props.avatarUrl} className="avatar"/>
+				</div>
+				<div className="name">
+					{this.props.name}
+				</div>
+				<div className="text">
+					{this.props.children}
+				</div>
+			</div>
 		)
   }
 });
@@ -46,7 +52,7 @@ var CommentBox = React.createClass({
   insertComment() {
     var oldState = this.state.data;
     var id = oldState.length + 2;
-    var avatarUrl = "https://avatars3.githubusercontent.com/u/6748866?v=3&s=460";
+    var avatarUrl = "guest.jpg";
     var name = this.refs.name.value;
 		var text = this.refs.text.value;
 
@@ -78,13 +84,14 @@ var CommentBox = React.createClass({
 
   render() {
     return (
-      <div>
-        <div>
-          <input ref="name" placeholder="Your name"/>
-          <input ref="text" placeholder="Your comment"/>
-          <button onClick={this.insertComment}>Add</button>
-        </div>
+      <div className="comment-box">
         <CommentList comments={this.state.data}/>
+        <div className="comment-form">
+					<img src="guest.jpg" className="avatar"/>
+          <input ref="name" placeholder="Your name" className="input-text"/>
+          <textarea ref="text" placeholder="Your comment" className="textarea"></textarea>
+          <button onClick={this.insertComment} className="btn">Comment</button>
+        </div>
       </div>
     )
   }
