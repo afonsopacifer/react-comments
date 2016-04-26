@@ -43,6 +43,12 @@ body {
   flex-wrap: wrap;
   margin: 5px 0;
   padding: 10px;
+	animation: show .5s ease;
+}
+
+@keyframes show {
+    0% { transform: translateX(-100%) }
+  100% { transform: translateX(0px) }
 }
 
 .avatar {
@@ -112,4 +118,16 @@ body {
 
 .btn:hover {
   background-color: #a6e905;
+}
+
+.erro {
+  display: none;
+  color: #FF9797;
+  margin-left: 60px;
+	animation: error .2s ease;
+}
+
+@keyframes error {
+    0% { opacity: 0; }
+  100% { opacity: 1; }
 }

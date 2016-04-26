@@ -7,18 +7,18 @@ var React    = require('react'),
 var Comment = React.createClass({
   render() {
     return (
-			<div className="comment">
-				<div>
-					<img src={this.props.avatarUrl} className="avatar"/>
-				</div>
-				<div className="name">
-					{this.props.name}
-				</div>
-				<div className="text">
-					{this.props.children}
-				</div>
-			</div>
-		)
+      <div className="comment">
+        <div>
+          <img src={this.props.avatarUrl} className="avatar"/>
+        </div>
+        <div className="name">
+          {this.props.name}
+        </div>
+        <div className="text">
+          {this.props.children}
+        </div>
+      </div>
+    )
   }
 });
 
@@ -53,17 +53,35 @@ var CommentBox = React.createClass({
     var oldState = this.state.data;
     var id = oldState.length + 2;
     var avatarUrl = "src/img/guest.jpg";
-    var name = this.refs.name.value;
-		var text = this.refs.text.value;
+    var name = this.refs.name;
+    var text = this.refs.text;
 
-    var newState = oldState.push({
-			"id": id,
- 			"avatarUrl": avatarUrl,
- 			"name": name,
- 			"text": text
-		});
+    if (name.value == "") {
+      name.value = "Anonymous";
+    }
 
-    this.setState({data: this.state.data});
+    if (text.value != "") {
+
+      var newState = oldState.push({
+        "id": id,
+         "avatarUrl": avatarUrl,
+         "name": name.value,
+         "text": text.value
+      });
+
+      this.setState({data: this.state.data});
+
+      name.value = "";
+      text.value = "";
+
+      this.refs.erro.style.display = "none";
+
+    } else {
+
+      this.refs.erro.style.display = "block";
+
+    }
+
   },
 
  loadJSON() {
@@ -86,11 +104,12 @@ var CommentBox = React.createClass({
     return (
       <div className="comment-box">
         <CommentList comments={this.state.data}/>
-        <div className="comment-form">
-					<img src="src/img/guest.jpg" className="avatar"/>
-          <input ref="name" placeholder="Your name" className="input-text"/>
-          <textarea ref="text" placeholder="Your comment" className="textarea"></textarea>
-          <button onClick={this.insertComment} className="btn">Guest Comment</button>
+        <div ref="commentForm" className="comment-form">
+          <img src="src/img/guest.jpg" className="avatar"/>
+          <input ref="name" placeholder="Who are you?" className="input-text"/>
+          <textarea ref="text" placeholder="You have a comment ? *" className="textarea"></textarea>
+          <span className="erro" ref="erro">* The comment field is mandatory ;)</span>
+          <button onClick={this.insertComment} className="btn">Comment</button>
         </div>
       </div>
     )
