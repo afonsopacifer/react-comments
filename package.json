@@ -1,9 +1,9 @@
 {
   "name": "react-comments",
   "version": "0.1.0",
-  "description": "",
+  "description": "A React component for comment feed.",
   "scripts": {
-    "start": "./node_modules/.bin/http-server -p 5000 | watchify -t reactify src/main.js -o src/bundle.js"
+    "start": "./node_modules/.bin/http-server -p 5000 | watchify -t reactify src/js/app.js -o src/js/bundle.js"
   },
   "repository": {
     "type": "git",
